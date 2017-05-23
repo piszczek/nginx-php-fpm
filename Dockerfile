@@ -229,7 +229,6 @@ RUN echo "cgi.fix_pathinfo=0" > ${php_vars} &&\
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
-ADD scripts/xdebug /xdebug
 ADD scripts/pull /usr/bin/pull
 ADD scripts/push /usr/bin/push
 ADD scripts/letsencrypt-setup /usr/bin/letsencrypt-setup
@@ -245,6 +244,11 @@ VOLUME /var/www/html
 EXPOSE 443 80
 
 CMD ["/start.sh"]
+
+RUN mv /usr/local/bin/php /usr/local/bin/php7
+ADD scripts/php /usr/local/bin/php
+ADD scripts/xdebug /usr/bin/xdebug
+RUN chmod 755 /usr/bin/xdebug && chmod 755 /usr/local/bin/php
 
 RUN yes | pecl install xdebug \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
