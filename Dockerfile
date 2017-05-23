@@ -60,7 +60,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && apk add --no-cache --virtual .build-deps \
     gcc \
     libc-dev \
-    autoconf \
     make \
     openssl-dev \
     pcre-dev \
@@ -131,7 +130,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   # forward request and error logs to docker log collector
   && ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log \
-  && apk add --update alpine-sdk
+  && apk add --update alpine-sdk \
+  && apk add autoconf
 
 RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
 #    sed -i -e "s/v3.4/edge/" /etc/apk/repositories && \
