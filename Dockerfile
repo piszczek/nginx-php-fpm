@@ -131,7 +131,9 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log \
   && apk add --update alpine-sdk \
-  && apk add autoconf
+  && apk add autoconf \
+  && apk add nodejs \
+  && apk add ruby
 
 RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
 #    sed -i -e "s/v3.4/edge/" /etc/apk/repositories && \
@@ -256,5 +258,10 @@ RUN docker-php-ext-install bcmath
 
 RUN mv /usr/local/bin/php /usr/local/bin/php7
 ADD scripts/php /usr/local/bin/php
-ADD scripts/xdebug /usr/bin/xdebug
+ADD scripts/debug /usr/bin/debug
 RUN chmod 755 /usr/bin/xdebug && chmod 755 /usr/local/bin/php
+
+RUN npm install -g uglifycss
+RUN npm install -g uglify-js
+
+RUN echo "umask 002" >> ~/.bashrc
