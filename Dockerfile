@@ -132,8 +132,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && ln -sf /dev/stderr /var/log/nginx/error.log \
   && apk add --update alpine-sdk \
   && apk add autoconf \
-  && apk add nodejs \
-  && apk add ruby
+  && apk add nodejs
 
 RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
 #    sed -i -e "s/v3.4/edge/" /etc/apk/repositories && \
@@ -263,7 +262,6 @@ RUN chmod 755 /usr/bin/debug && chmod 755 /usr/local/bin/php
 
 RUN npm install -g uglifycss
 RUN npm install -g uglify-js
-RUN gem install sass
 
 RUN echo "umask 002" >> ~/.bashrc
 RUN debug off
