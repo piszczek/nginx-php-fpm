@@ -266,3 +266,4 @@ RUN npm install -g uglify-js
 RUN gem install sass
 
 RUN echo "umask 002" >> ~/.bashrc
+RUN debug off
