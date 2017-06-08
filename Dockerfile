@@ -259,7 +259,7 @@ RUN docker-php-ext-install bcmath
 RUN mv /usr/local/bin/php /usr/local/bin/php7
 ADD scripts/php /usr/local/bin/php
 ADD scripts/debug /usr/bin/debug
-RUN chmod 755 /usr/bin/xdebug && chmod 755 /usr/local/bin/php
+RUN chmod 755 /usr/bin/debug && chmod 755 /usr/local/bin/php
 
 RUN npm install -g uglifycss
 RUN npm install -g uglify-js
