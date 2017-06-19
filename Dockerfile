@@ -266,6 +266,9 @@ RUN chmod 755 /usr/bin/debug && chmod 755 /usr/local/bin/php
 RUN npm install -g uglifycss
 RUN npm install -g uglify-js
 
+RUN npm install -g gulp
+RUN npm install
+
 RUN gem install sass
 
 RUN echo "umask 002" >> ~/.bashrc
