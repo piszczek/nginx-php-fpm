@@ -163,7 +163,10 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     libffi-dev \
     freetype-dev \
     sqlite-dev \
-    libjpeg-turbo-dev && \
+    libjpeg-turbo-dev
+    ruby \
+    ruby-rdoc \
+    ruby-irb && \
     docker-php-ext-configure gd \
       --with-gd \
       --with-freetype-dir=/usr/include/ \
@@ -262,6 +265,8 @@ RUN chmod 755 /usr/bin/debug && chmod 755 /usr/local/bin/php
 
 RUN npm install -g uglifycss
 RUN npm install -g uglify-js
+
+RUN gem install sass
 
 RUN echo "umask 002" >> ~/.bashrc
 RUN debug off
