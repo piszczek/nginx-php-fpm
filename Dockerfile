@@ -132,7 +132,10 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && ln -sf /dev/stderr /var/log/nginx/error.log \
   && apk add --update alpine-sdk \
   && apk add autoconf \
-  && apk add nodejs
+  && apk add nodejs \
+  && apk add ruby \
+  && apk add ruby-rdoc \
+  && apk add ruby-irb
 
 RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
 #    sed -i -e "s/v3.4/edge/" /etc/apk/repositories && \
@@ -163,10 +166,7 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     libffi-dev \
     freetype-dev \
     sqlite-dev \
-    libjpeg-turbo-dev
-    ruby \
-    ruby-rdoc \
-    ruby-irb && \
+    libjpeg-turbo-dev && \
     docker-php-ext-configure gd \
       --with-gd \
       --with-freetype-dir=/usr/include/ \
