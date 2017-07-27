@@ -7,6 +7,8 @@ ENV fpm_conf /usr/local/etc/php-fpm.d/www.conf
 ENV php_vars /usr/local/etc/php/conf.d/docker-vars.ini
 
 ENV NGINX_VERSION 1.12.0
+RUN echo http://dl-cdn.alpinelinux.org/alpine/v3.6/main > /etc/apk/repositories
+RUN echo http://dl-cdn.alpinelinux.org/alpine/v3.6/community >> /etc/apk/repositories
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && CONFIG="\
@@ -191,7 +193,7 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
 #    ln -s /usr/bin/php7 /usr/bin/php
 
 #update GD
-RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev
+RUN apk add --no-cache freetype libpng libjpeg-turbo libjpeg-turbo-dev
 
 ADD conf/supervisord.conf /etc/supervisord.conf
 
